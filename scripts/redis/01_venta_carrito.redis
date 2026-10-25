@@ -1,0 +1,9 @@
+# ==============================================================
+# Taller 3: Persistencia Políglota - Datos Efímeros / Caché (Redis)
+# ==============================================================
+
+# 1. Simular vaciado de carrito al procesar la venta
+DEL carrito:usuario_1001
+
+# 2. Verificar que la clave ha sido eliminada
+EXISTS carrito:usuario_1001
