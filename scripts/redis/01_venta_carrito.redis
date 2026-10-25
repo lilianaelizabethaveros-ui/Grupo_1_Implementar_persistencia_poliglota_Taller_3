@@ -2,8 +2,14 @@
 # Taller 3: Persistencia Políglota - Datos Efímeros / Caché (Redis)
 # ==============================================================
 
-# 1. Simular vaciado de carrito al procesar la venta
-DEL carrito:usuario_1001
+# Simulación del almacenamiento temporal del carrito con expiración de 30 minutos (1800 segundos)
+SETEX carrito:usuario_1001 1800 '{"id_factura":1001, "productos":[{"codigo":"TV001","cantidad":1}]}'
 
-# 2. Verificar que la clave ha sido eliminada
+# Lectura y comprobación del carrito activo en memoria
+GET carrito:usuario_1001
+
+# Verificación de existencia de la clave activa
 EXISTS carrito:usuario_1001
+
+# Vaciado del carrito (eliminación de la clave) al concretar la venta de forma exitosa
+DEL carrito:usuario_1001
